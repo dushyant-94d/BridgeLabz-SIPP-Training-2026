@@ -1,0 +1,36 @@
+import java.util.Scanner;
+
+public class LowerCaseDemo {
+
+    static String convertLower(String text) {
+
+        String result = "";
+
+        for (int i = 0; i < text.length(); i++) {
+
+            char ch = text.charAt(i);
+
+            if (ch >= 'A' && ch <= 'Z') {
+                ch = (char)(ch + 32);
+            }
+
+            result += ch;
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        String text = sc.nextLine();
+
+        String userResult = convertLower(text);
+        String builtInResult = text.toLowerCase();
+
+        System.out.println("User Result : " + userResult);
+        System.out.println("Built-in Result : " + builtInResult);
+        System.out.println(userResult.equals(builtInResult));
+    }
+}
