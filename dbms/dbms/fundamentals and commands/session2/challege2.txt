@@ -1,0 +1,14 @@
+Challenge 2: Insert Initial COVID Data (DML)
+Task
+
+Insert a record for India on 2020-03-15 at 10:00 AM.
+
+INSERT INTO covid_cases
+(date, time, state, confirmed_indian_national,
+confirmed_foreign_national, recoveries, deaths, confirmed_cases)
+VALUES
+('2020-03-15', '10:00:00', 'India', 95, 5, 50, 2, 100);
+Concepts Practiced
+INSERT INTO
+VALUES
+Inserting a single record

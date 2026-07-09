@@ -1,0 +1,13 @@
+Challenge 4: Delete Incorrect Records (DML)
+Task
+
+Delete the record where the state is entered as 'IN'.
+
+DELETE FROM covid_cases
+WHERE state = 'IN';
+Verify the Deletion
+SELECT * FROM covid_cases;
+Concepts Practiced
+DELETE
+WHERE
+Data Cleaning

@@ -1,0 +1,24 @@
+Challenge 1: Create COVID Database Schema (DDL)
+Task A: Create Database
+CREATE DATABASE covid_db;
+Select the Database
+USE covid_db;
+Task B: Create covid_cases Table
+CREATE TABLE covid_cases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE,
+    time TIME,
+    state VARCHAR(100),
+    confirmed_indian_national INT,
+    confirmed_foreign_national INT,
+    recoveries INT,
+    deaths INT,
+    confirmed_cases INT
+);
+Concepts Practiced
+CREATE DATABASE
+USE
+CREATE TABLE
+PRIMARY KEY
+AUTO_INCREMENT
+Data Types (INT, VARCHAR, DATE, TIME)

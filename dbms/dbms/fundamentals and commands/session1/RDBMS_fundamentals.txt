@@ -1,0 +1,116 @@
+1. Create COVID Database Schema
+Objective
+
+Create a database and tables to store COVID-19 information.
+
+Step 1: Create Database
+CREATE DATABASE covid_db;
+Step 2: Use Database
+USE covid_db;
+Step 3: Create covid_cases Table
+CREATE TABLE covid_cases (
+    country VARCHAR(50),
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+    recoveries INT,
+    population BIGINT
+);
+Step 4: Create covid_deaths Table
+CREATE TABLE covid_deaths (
+    country VARCHAR(50),
+    report_date DATE,
+    deaths INT
+);
+Step 5: Create covid_vaccines Table
+CREATE TABLE covid_vaccines (
+    country VARCHAR(50),
+    report_date DATE,
+    vaccinated_people INT,
+    vaccination_rate DECIMAL(5,2)
+);
+Concepts Practiced
+CREATE DATABASE
+CREATE TABLE
+Data Types
+Schema Design
+2. Insert Initial COVID Data
+Objective
+
+Insert sample records for India, USA, and UK.
+
+SQL Query
+INSERT INTO covid_cases
+(country, report_date, confirmed_cases, deaths, recoveries, population)
+VALUES
+('India', '2021-06-01', 28000000, 330000, 26000000, 1380000000),
+
+('India', '2021-06-02', 28150000, 331000, 26150000, 1380000000),
+
+('USA', '2021-06-01', 33300000, 595000, 27000000, 331000000),
+
+('USA', '2021-06-02', 33350000, 596000, 27100000, 331000000),
+
+('UK', '2021-06-01', 4500000, 128000, 4300000, 68000000),
+
+('UK', '2021-06-02', 4515000, 128500, 4310000, 68000000);
+Concepts Practiced
+INSERT
+Multiple Row Insert
+Data Entry
+3. Update Case Information
+Objective
+
+Update confirmed cases for a specific country and date.
+
+SQL Query
+UPDATE covid_cases
+SET confirmed_cases = 28200000
+WHERE country = 'India'
+AND report_date = '2021-06-02';
+Verify the Update
+SELECT *
+FROM covid_cases
+WHERE country = 'India';
+Concepts Practiced
+UPDATE
+WHERE Clause
+Data Maintenance
+4. Delete Incorrect Records
+Objective
+
+Remove incorrect or duplicate records.
+
+Delete Incorrect Country Name
+DELETE FROM covid_cases
+WHERE country = 'IN';
+Delete Duplicate Record
+DELETE FROM covid_cases
+WHERE country = 'India'
+AND report_date = '2021-06-01'
+LIMIT 1;
+Verify
+SELECT * FROM covid_cases;
+Concepts Practiced
+DELETE
+WHERE Clause
+Data Cleaning
+5. Alter Table to Add Vaccination Information
+Objective
+
+Add a vaccination rate column.
+
+SQL Query
+ALTER TABLE covid_cases
+ADD vaccination_rate DECIMAL(5,2);
+Update Vaccination Rate
+UPDATE covid_cases
+SET vaccination_rate = 65.50
+WHERE country = 'India';
+Display Table
+SELECT * FROM covid_cases;
+Concepts Practiced
+ALTER TABLE
+ADD COLUMN
+UPDATE
+Database Maintenance

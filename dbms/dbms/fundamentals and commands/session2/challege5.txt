@@ -1,0 +1,31 @@
+Challenge 5: Alter Table (DDL)
+Task
+
+Add a new column named vaccination_rate.
+
+ALTER TABLE covid_cases
+ADD vaccination_rate FLOAT;
+Verify the Table Structure
+DESC covid_cases;
+Concepts Practiced
+ALTER TABLE
+ADD COLUMN
+Schema Modification
+
+
+
+
+
+Complete Table Structure
+CREATE TABLE covid_cases (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    date DATE,
+    time TIME,
+    state VARCHAR(100),
+    confirmed_indian_national INT,
+    confirmed_foreign_national INT,
+    recoveries INT,
+    deaths INT,
+    confirmed_cases INT,
+    vaccination_rate FLOAT
+);

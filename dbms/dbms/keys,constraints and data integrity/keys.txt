@@ -1,0 +1,148 @@
+Use Case 1: Define Composite Primary Key in covid_cases
+Objective
+
+Ensure that each country has only one COVID record for a specific reporting date.
+
+SQL Query
+CREATE TABLE covid_cases (
+    country_id INT,
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+    recoveries INT,
+
+    PRIMARY KEY (country_id, report_date)
+);
+Concepts Practiced
+Primary Key
+Composite Primary Key
+Entity Integrity
+Preventing Duplicate Records
+Use Case 2: Create Foreign Key Relationship
+Objective
+
+Ensure COVID records can only be inserted for valid countries.
+
+Step 1: Create Countries Table
+CREATE TABLE countries (
+    country_id INT PRIMARY KEY,
+    country_name VARCHAR(100) NOT NULL,
+    population BIGINT
+);
+Step 2: Create COVID Cases Table with Foreign Key
+CREATE TABLE covid_cases (
+    country_id INT,
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+    recoveries INT,
+
+    PRIMARY KEY (country_id, report_date),
+
+    FOREIGN KEY (country_id)
+    REFERENCES countries(country_id)
+);
+Concepts Practiced
+Reference Table
+Foreign Key
+Referential Integrity
+Relationships Between Tables
+Use Case 3: Add Constraints to Ensure Data Quality
+Objective
+
+Ensure valid COVID data is stored.
+
+SQL Query
+CREATE TABLE covid_cases (
+    country_id INT NOT NULL,
+    report_date DATE NOT NULL,
+    confirmed_cases INT NOT NULL,
+    deaths INT,
+    recoveries INT,
+
+    PRIMARY KEY (country_id, report_date),
+
+    FOREIGN KEY (country_id)
+    REFERENCES countries(country_id),
+
+    CHECK (deaths <= confirmed_cases)
+);
+Or Add Constraints to an Existing Table
+ALTER TABLE covid_cases
+MODIFY country_id INT NOT NULL;
+
+ALTER TABLE covid_cases
+MODIFY report_date DATE NOT NULL;
+
+ALTER TABLE covid_cases
+MODIFY confirmed_cases INT NOT NULL;
+
+ALTER TABLE covid_cases
+ADD CONSTRAINT chk_deaths
+CHECK (deaths <= confirmed_cases);
+Concepts Practiced
+NOT NULL
+CHECK Constraint
+Data Validation
+Data Integrity
+Use Case 4: Set Default Values
+Objective
+
+Automatically assign values during insertion.
+
+SQL Query
+CREATE TABLE covid_cases (
+    country_id INT,
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+
+    recoveries INT DEFAULT 0,
+
+    last_updated TIMESTAMP
+    DEFAULT CURRENT_TIMESTAMP,
+
+    PRIMARY KEY (country_id, report_date),
+
+    FOREIGN KEY (country_id)
+    REFERENCES countries(country_id)
+);
+Or Modify an Existing Table
+ALTER TABLE covid_cases
+ALTER COLUMN recoveries SET DEFAULT 0;
+
+ALTER TABLE covid_cases
+ALTER COLUMN last_updated
+SET DEFAULT CURRENT_TIMESTAMP;
+
+Note: The ALTER COLUMN syntax may differ depending on the database (MySQL, PostgreSQL, SQL Server, etc.).
+
+Concepts Practiced
+DEFAULT Constraint
+CURRENT_TIMESTAMP
+Automatic Values
+Reducing Manual Data Entry
+Use Case 5: Prevent Duplicate Country-Date Entries
+Objective
+
+Prevent duplicate records for the same country and date.
+
+SQL Query
+CREATE TABLE covid_cases (
+    country_id INT,
+    report_date DATE,
+    confirmed_cases INT,
+    deaths INT,
+
+    CONSTRAINT unique_country_date
+    UNIQUE (country_id, report_date)
+);
+Or Add UNIQUE Constraint to Existing Table
+ALTER TABLE covid_cases
+ADD CONSTRAINT unique_country_date
+UNIQUE (country_id, report_date);
+Concepts Practiced
+UNIQUE Constraint
+Preventing Duplicate Records
+Business Rules
+Data Integrity

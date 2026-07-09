@@ -1,0 +1,17 @@
+Challenge 3: Update Case Information (DML)
+Task
+
+Update confirmed cases to 120 for India on 2020-03-15.
+
+UPDATE covid_cases
+SET confirmed_cases = 120
+WHERE state = 'India'
+AND date = '2020-03-15';
+Verify the Update
+SELECT *
+FROM covid_cases
+WHERE state = 'India';
+Concepts Practiced
+UPDATE
+SET
+WHERE
